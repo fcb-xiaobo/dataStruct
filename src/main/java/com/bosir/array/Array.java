@@ -1,4 +1,4 @@
-package com.alibaba.array;
+package com.bosir.array;
 
 /**
  * Created by 小波哥  2019/6/27 21:07
@@ -169,7 +169,7 @@ public class Array<E> {
         /**
          * 从当前索引的下一位开始循环 直到数组的size
          *
-         * todo 不能=size  因为size是从1开始的 所以比索引的长度少一个
+         * note 不能=size  因为size是从1开始的 所以比索引的长度少一个
          */
         for (int i = index + 1; i < size; i++) {
             date[i - 1] = date[i];
