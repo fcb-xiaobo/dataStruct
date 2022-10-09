@@ -61,6 +61,9 @@ public class Array<E> {
         insertIndexElement(0, e);
     }
 
+    public void insertTailElement(E e) {
+        insertIndexElement(size, e);
+    }
     /**
      * 在指定索引的位置上插入元素
      *
@@ -75,7 +78,6 @@ public class Array<E> {
         }
         //判断集合是否还能添加新元素
         if (date.length == size) {
-
             resetArraySize(date.length * 2);
             //throw new IllegalArgumentException("Array add fail, array full ");
         }
@@ -210,6 +212,12 @@ public class Array<E> {
         for (int i = 0; i < size; i++) {
             newDate[i] = date[i];
         }
+    }
+    //交换位置  父子节点交换位置
+    public void swap(int childIndex, int parentIndex) {
+        E tmpNode = date[childIndex];
+        date[childIndex]=date[parentIndex];
+        date[parentIndex]=tmpNode;
     }
 }
 
