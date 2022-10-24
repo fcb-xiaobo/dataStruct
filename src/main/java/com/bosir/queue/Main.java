@@ -1,30 +1,38 @@
 package com.bosir.queue;
 
+import com.bosir.queue.array.MyArrayQueue;
+import com.bosir.queue.loop.MyLoopQueue;
+
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        ArrayQueue queue=new ArrayQueue();
-        for (int i = 0; i < 10; i++) {
-            queue.enqueue(i);
-        }
+        int opCount = 100000;
 
-        System.out.println(String.format("队列元素 [ %s ]",queue));
+        MyArrayQueue<Integer> arrayQueue = new MyArrayQueue<>(opCount);
+        double time1 = testQueue(arrayQueue, opCount);
+        System.out.println("ArrayQueue, time: " + time1 + " s");
 
-        Object dequeue1 = queue.dequeue();
-        Object dequeue2 = queue.dequeue();
-
-        System.out.println(String.format("出队元素 [ %s ], [ %s ] ,出队只有数据元素 [ %s ]",dequeue1,dequeue2,queue));
+        MyLoopQueue<Integer> loopQueue = new MyLoopQueue<>(opCount);
+        double time2 = testQueue(loopQueue, opCount);
+        System.out.println("LoopQueue, time: " + time2 + " s");
 
 
-        System.out.println("循环队列  执行记录------------------------------------");
-        LoopQueue loopQueue=new LoopQueue();
+    }
 
-        for (int i = 0; i < 10; i++) {
-            loopQueue.enqueue(i);
+    // 测试使用q运行opCount个enqueueu和dequeue操作所需要的时间，单位：秒
+    private static double testQueue(MyQueue<Integer> q, int opCount){
 
-        }
+        long startTime = System.nanoTime();
 
-        System.out.println("循环队列 -> "+loopQueue);
+        Random random = new Random();
+        for(int i = 0 ; i < opCount ; i ++)
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        for(int i = 0 ; i < opCount ; i ++)
+            q.dequeue();
 
+        long endTime = System.nanoTime();
 
+        return (endTime - startTime) / 1000000000.0;
     }
 }

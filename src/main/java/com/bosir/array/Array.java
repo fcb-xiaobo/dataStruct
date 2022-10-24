@@ -169,8 +169,10 @@ public class Array<E> {
 
         E result = date[index];
         /**
-         * 从当前索引的下一位开始循环 直到数组的size
+         *todo 当前index的数据已经取出了,从当前index+1的位置向前移动一个位置
+         * index=index+1  index ++  直接index <size
          *
+         * 从当前索引的下一位开始循环 直到数组的size
          * note 不能=size  因为size是从1开始的 所以比索引的长度少一个
          */
         for (int i = index + 1; i < size; i++) {
