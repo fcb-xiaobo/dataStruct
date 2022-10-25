@@ -1,4 +1,4 @@
-package com.bosir.linkedlist;
+package com.bosir.linkedlist.base;
 
 
 /**

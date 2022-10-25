@@ -1,6 +1,8 @@
-package com.bosir.stack;
+package com.bosir.stack.array;
 
 
+import com.bosir.stack.MyStack;
+import com.bosir.stack.array.Array;
 
 /**
  * @Auther: fanchengbo

@@ -1,4 +1,4 @@
-package com.bosir.stack;
+package com.bosir.stack.array;
 
 import java.util.Arrays;
 import java.util.Objects;
