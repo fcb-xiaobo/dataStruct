@@ -7,7 +7,7 @@ import com.bosir.stack.MyStack;
  * @Auther: fanchengbo
  * @Date: 2022/10/25 18:13
  * @Description:使用链表实现栈
- * stack 结构是 FIFO(先进后出 first in first out)
+ * stack 结构是 FILO(先进后出 first in last out)
  */
 public class MyLinkedListStack<E> implements MyStack<E> {
 

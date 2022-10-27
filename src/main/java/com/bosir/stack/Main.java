@@ -17,6 +17,9 @@ public class Main {
         System.out.println(arrayStack);
 
 
+        System.out.println("看看栈顶 "+arrayStack.peek());
+
+
 
     }
 }
