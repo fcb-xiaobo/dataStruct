@@ -133,42 +133,109 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
-    @Override
-    public String toString(){
-        StringBuilder res = new StringBuilder();
-        generateBSTString(root, 0, res);
-        return res.toString();
+
+    // 二分搜索树的中序遍历
+    public void inOrder() {
+        inOrder(root);
     }
 
-    // 生成以node为根节点，深度为depth的描述二叉树的字符串
-    private void generateBSTString(Node node, int depth, StringBuilder res){
-
-        if(node == null){
-            res.append(generateDepthString(depth) + "null\n");
+    // 中序遍历以node为根的二分搜索树, 递归算法
+    private void inOrder(Node node) {
+        if (node == null) {
             return;
         }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
 
-        res.append(generateDepthString(depth) + node.e + "\n");
-        generateBSTString(node.left, depth + 1, res);
-        generateBSTString(node.right, depth + 1, res);
     }
 
-    private String generateDepthString(int depth){
-        StringBuilder res = new StringBuilder();
-        for(int i = 0 ; i < depth ; i ++)
-            res.append("--");
-        return res.toString();
+
+    // 二分搜索树的后序遍历
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    // 后序遍历以node为根的二分搜索树, 递归算法
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    // 寻找二分搜索树的最小元素
+    public E minimum() {
+        if (root == null) {
+            throw new IllegalArgumentException("Binary Search Tree is Empty");
+        }
+        return minimum(root);
+    }
+
+    private E minimum(Node root) {
+        if (root.left == null) {
+            return root.e;
+        }
+        return minimum(root.left);
+    }
+
+    public E maximum() {
+        if (root == null) {
+            throw new IllegalArgumentException("Binary Search Tree is Empty");
+        }
+        return maximum(root);
+    }
+
+    private E maximum(Node root) {
+        if (root.right == null) {
+            return root.e;
+        }
+        return maximum(root.right);
+    }
+
+    // 从二分搜索树中删除最小值所在节点, 返回最小值
+    // 从二分搜索树中删除最小值所在节点, 返回最小值
+    public E removeMin(){
+        E resMin = minimum();
+        root= removeMin(root);
+        return resMin;
+    }
+
+    private Node removeMin(Node node) {
+        if(node.left == null){
+            Node rightNode = node.right;
+            node.right = null;
+            size --;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    @Override
+    public String toString() {
+        return "BST{" +
+                "size=" + size +
+                ", root=" + root +
+                '}';
     }
 
     public static void main(String[] args) {
         BST<Integer> bsts = new BST<>();
-        List<Integer> nums = Arrays.asList(10, 8, 6, 7,9, 13);
+        List<Integer> nums = Arrays.asList(10, 8, 9);
         for (Integer num : nums) {
             bsts.add(num);
         }
-        bsts.preOrder();
-        System.out.println("======================");
+        bsts.postOrder();
         System.out.println(bsts);
+//        System.out.println(bsts);
+        Integer integer = bsts.removeMin();
+        System.out.println("删除的元素"+integer);
+        System.out.println(bsts);
+
     }
 
 }
